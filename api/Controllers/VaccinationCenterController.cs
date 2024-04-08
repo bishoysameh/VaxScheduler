@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -23,7 +24,7 @@ namespace api.Controllers
 
         [HttpGet]
         public IActionResult GetAll() {
-            var VaccinationCenters = _context.VaccinationCenters.ToList();
+            var VaccinationCenters = _context.VaccinationCenters.ToList().Select(v => v.ToVaccinationCenterDto());
             return Ok(VaccinationCenters);
         }
 
@@ -32,7 +33,7 @@ namespace api.Controllers
             var VaccinationCenter = _context.VaccinationCenters.Find(id);
             if (VaccinationCenter == null)
                 return NotFound();
-            return Ok(VaccinationCenter);    
+            return Ok(VaccinationCenter.ToVaccinationCenterDto());    
         }
     }
 }
