@@ -18,5 +18,14 @@ namespace api.Mappers
                 AdminId = vaccinationCenterModel.AdminId
             };
         }
+
+        public static VaccinationCenter ToVaccinationCenterFromCreateDto(this CreateVaccinationCenterRequestDto VaccinationCenterDto){
+            return new VaccinationCenter{
+                Name = VaccinationCenterDto.Name,
+                Address = VaccinationCenterDto.Address,
+                ContactInfo = VaccinationCenterDto.ContactInfo,
+                AdminId = VaccinationCenterDto.AdminId
+            };
+        }
     }
 }
